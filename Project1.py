@@ -13,30 +13,33 @@ with open('airportcode_1.csv' , 'r') as read_file:
     code = []
     for i in range(1,len(row)-1):
         code.append(row[i][0])
-repeat = True
-i = 0
+
+
 data = {}
-while repeat == True :
-    data['airportcode'] = code[i]
-    print(data)
-    url_values =  urllib.parse.urlencode(data)
-    print(url_values)
-    full_url = url + '?' + url_values
-    try: data = uReq(full_url)
-    except urllib.error.URLError as e:
-        print(e.reason)
-    print(data)
-    r = input('Do you want to repeat again')
-    r = r.lower()
-    if r == 'y' or r == 'Y':
-        repeat = True
-        i = i +1
-    else:
-        r = False
+data['airportcode'] = code[0]
+print(data)
+url_values = urllib.parse.urlencode(data)
+print(url_values)
+full_url = url + '?' + url_values
+try: data = uReq(full_url)
+except urllib.error.URLError as e:
+    print(e.reason)
+print(data)
+# while repeat == True :
+#
+#
+#     print(data)
+#     r = input('Do you want to repeat again')
+#     r = r.lower()
+#     if r == 'y' or r == 'Y':
+#         repeat = True
+#         i = i +1
+#     else:
+#         r = False
 
 # values
 #
-my_url = 'https://en.wikipedia.org/wiki/Jacksons_International_Airport'
+my_url = 'https://en.wikipedia.org/wiki/Keflav%C3%ADk_International_Airport'
 def scrap():
     uClient = uReq(my_url)
     page_html = uClient.read()
@@ -65,7 +68,7 @@ def add_text():
 
 
 
-
+add_text()
 
 
 
