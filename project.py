@@ -2,8 +2,7 @@ import csv
 import bs4
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
-with open('url.csv' , 'r') as read_file:
-    reader = csv.reader(read_file)
+
 
 my_url = input('enter url :')
 uClient = uReq(my_url)

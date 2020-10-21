@@ -1,14 +1,41 @@
 import csv
 import bs4
-from urllib.request import urlopen as uReq
+import urllib
 from bs4 import BeautifulSoup as soup
+import urllib.parse
+from urllib.request import urlopen as uReq
 
 
-def read_file():
-    with open('airportcode_1.csv','a') as file:
-        reader = csv.reader(file)
-        next(file)
-        row = list(reader)
+url = 'https://en.wikipedia.org/wiki/'
+with open('airportcode_1.csv' , 'r') as read_file:
+    reader = csv.reader(read_file)
+    row = list(reader)
+    code = []
+    for i in range(1,len(row)-1):
+        code.append(row[i][0])
+repeat = True
+i = 0
+data = {}
+while repeat == True :
+    data['airportcode'] = code[i]
+    print(data)
+    url_values =  urllib.parse.urlencode(data)
+    print(url_values)
+    full_url = url + '?' + url_values
+    try: data = uReq(full_url)
+    except urllib.error.URLError as e:
+        print(e.reason)
+    print(data)
+    r = input('Do you want to repeat again')
+    r = r.lower()
+    if r == 'y' or r == 'Y':
+        repeat = True
+        i = i +1
+    else:
+        r = False
+
+# values
+#
 my_url = 'https://en.wikipedia.org/wiki/Jacksons_International_Airport'
 def scrap():
     uClient = uReq(my_url)
@@ -31,7 +58,10 @@ def scrap():
     l = [iata,icao,airport_name,location,gps]
     return l
 
-scrap()
+def add_text():
+    with open('airport.csv','a') as file:
+        writer = csv.writer(file)
+        writer.writerow(scrap())
 
 
 
