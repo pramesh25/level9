@@ -1,0 +1,3 @@
+url POM=https://en.wikipedia.org/wiki/Jacksons_International_Airport
+Kef = https://en.wikipedia.org/wiki/Keflav%C3%ADk_International_Airport
+prn = https://en.wikipedia.org/wiki/Pristina_International_Airport
